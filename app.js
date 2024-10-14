@@ -1,11 +1,11 @@
 
 
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Login functionality
+
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
@@ -14,10 +14,10 @@ if (loginForm) {
         const password = document.getElementById('password').value;
 
         if (username === "admin" && password === "admin") {
-            // Admin login
+            
             window.location.href = 'admin-dashboard.html';
         } else {
-            // Regular user login
+            
             db.collection('advisers')
                 .where('username', '==', username)
                 .get()
@@ -42,13 +42,13 @@ if (loginForm) {
     });
 }
 
-// Dashboard functionality
+
 const mainContent = document.getElementById('mainContent');
 if (mainContent) {
-    // Load students page by default
+    
     loadStudents();
 
-    // Add event listeners for sidebar links
+    
     document.getElementById('studentsLink').addEventListener('click', loadStudents);
     document.getElementById('advisersLink').addEventListener('click', loadAdvisers);
     document.getElementById('signOutLink').addEventListener('click', signOut);
@@ -140,9 +140,9 @@ function loadAdvisers() {
 }
 
 function editStudent(id) {
-    // Implement edit student functionality
+    
     console.log("Edit student:", id);
-    // You can implement a form or modal to edit student details
+    
 }
 
 function deleteStudent(id) {
@@ -150,7 +150,7 @@ function deleteStudent(id) {
         db.collection('students').doc(id).delete()
             .then(() => {
                 console.log("Student successfully deleted!");
-                loadStudents(); // Reload the students list
+                loadStudents(); 
             })
             .catch((error) => {
                 console.error("Error removing student: ", error);
@@ -159,9 +159,9 @@ function deleteStudent(id) {
 }
 
 function editAdviser(id) {
-    // Implement edit adviser functionality
+    
     console.log("Edit adviser:", id);
-    // You can implement a form or modal to edit adviser details
+    
 }
 
 function deleteAdviser(id) {
@@ -169,7 +169,7 @@ function deleteAdviser(id) {
         db.collection('advisers').doc(id).delete()
             .then(() => {
                 console.log("Adviser successfully deleted!");
-                loadAdvisers(); // Reload the advisers list
+                loadAdvisers(); 
             })
             .catch((error) => {
                 console.error("Error removing adviser: ", error);
@@ -205,7 +205,7 @@ function showAddAdviserForm() {
         })
         .then(() => {
             alert('Adviser added successfully');
-            loadAdvisers(); // Reload the advisers list
+            loadAdvisers(); 
         })
         .catch((error) => {
             console.error("Error adding adviser: ", error);

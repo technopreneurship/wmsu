@@ -1,3 +1,248 @@
+.subject-selector {
+    margin-bottom: 20px;
+}
+
+.year-tabs, .semester-tabs {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.year-tab, .semester-tab {
+    padding: 10px 20px;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.year-tab.active, .semester-tab.active {
+    background-color: #B22222;
+    color: white;
+}
+
+#subjectsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#subjectsTable th, #subjectsTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#subjectsTable th {
+    background-color: #f2f2f2;
+}
+
+#addSubjectsBySemesterForm {
+    margin-bottom: 20px;
+}
+
+#addSubjectsBySemesterForm select {
+    margin-right: 10px;
+    padding: 5px;
+}
+
+
+.student-profile {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.student-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+.no-photo {
+    width: 200px;
+    height: 200px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.profile-info {
+    flex-grow: 1;
+}
+
+#studentSubjects table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#studentSubjects th,
+#studentSubjects td {
+    padding: 8px;
+    text-align: left;
+    
+    border-bottom: 1px solid #ddd;
+}
+
+#studentSubjects th {
+    background-color: #f2f2f2;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.dashboard {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #B22222;
+    color: white;
+    padding: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+}
+
+.nav-item:hover, .nav-item.active {
+    background-color: #8B0000;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.students-icon { background-image: url('students-icon.png'); }
+.advisers-icon { background-image: url('advisers-icon.png'); }
+.archives-icon { background-image: url('archives-icon.png'); }
+.curriculum-icon { background-image: url('curriculum-icon.png'); }
+.creators-icon { background-image: url('creators-icon.png'); }
+.sign-out-icon { background-image: url('sign-out-icon.png'); }
+
+.main-content {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.search-container {
+    margin-bottom: 1rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.btn {
+    background-color: #B22222;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
+
+.btn:hover {
+    background-color: #8B0000;
+}
+
+.add-student-form {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.add-student-form h2 {
+    margin-top: 0;
+}
+
+.add-student-form input[type="text"],
+.add-student-form input[type="number"],
+.add-student-form input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-student-form input[type="submit"] {
+    background-color: #B22222;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-student-form input[type="submit"]:hover {
+    background-color: #8B0000;
+}
+
+.student-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;

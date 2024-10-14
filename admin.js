@@ -1,4 +1,4 @@
-// Initialize Firebase
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
@@ -16,7 +16,8 @@ function loadManageAdvisers() {
             <input type="text" id="adviserName" placeholder="Name" required>
             <input type="text" id="adviserUsername" placeholder="Username" required>
             <input type="password" id="adviserPassword" placeholder="Password" required>
-            <input type="text" id="adviserClassYear" placeholder="Class Year" required>
+            <input type="text" id="adviserBatchYear" placeholder="Batch Year" required>
+            <input type="text" id="adviserBatchCurriculum" placeholder="Batch Curriculum" required>
             <button type="submit">Add Adviser</button>
         </form>
         <h2>Existing Advisers</h2>
@@ -25,7 +26,8 @@ function loadManageAdvisers() {
                 <tr>
                     <th>Name</th>
                     <th>Username</th>
-                    <th>Class Year</th>
+                    <th>Batch Year</th>
+                    <th>Batch Curriculum</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -43,13 +45,15 @@ function addAdviser(e) {
     const name = document.getElementById('adviserName').value;
     const username = document.getElementById('adviserUsername').value;
     const password = document.getElementById('adviserPassword').value;
-    const classYear = document.getElementById('adviserClassYear').value;
+    const batchYear = document.getElementById('adviserBatchYear').value;
+    const batchCurriculum = document.getElementById('adviserBatchCurriculum').value;
 
     db.collection('advisers').add({
         name: name,
         username: username,
         password: password,
-        classYear: classYear
+        batchYear: batchYear,
+        batchCurriculum: batchCurriculum
     })
     .then(() => {
         alert('Adviser added successfully');
@@ -73,7 +77,8 @@ function loadAdvisers() {
                     <tr>
                         <td>${adviser.name}</td>
                         <td>${adviser.username}</td>
-                        <td>${adviser.classYear}</td>
+                        <td>${adviser.batchYear}</td>
+                        <td>${adviser.batchCurriculum}</td>
                         <td>
                             <button onclick="editAdviser('${doc.id}')">Edit</button>
                             <button onclick="deleteAdviser('${doc.id}')">Delete</button>
