@@ -1,5 +1,3 @@
-
-
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
@@ -150,8 +148,113 @@ function deleteAdviser(id) {
 }
 
 function loadManageSubjects() {
-    // Implement subject management functionality here
-    mainContent.innerHTML = '<h1>Manage Subjects</h1><p>Subject management functionality to be implemented.</p>';
+    let subjectsHtml = `
+        <h1>Manage Subjects</h1>
+        <form id="addSubjectForm">
+            <h2>Add New Subject</h2>
+            <input type="text" id="subjectCode" placeholder="Subject Code" required>
+            <input type="text" id="subjectDescription" placeholder="Description" required>
+            <input type="number" id="subjectLecHours" placeholder="Lecture Hours" required>
+            <input type="number" id="subjectLabHours" placeholder="Lab Hours" required>
+            <input type="number" id="subjectUnits" placeholder="Units" required>
+            <input type="text" id="subjectPreReqs" placeholder="Prerequisites (comma-separated)">
+            <select id="subjectSemester">
+                <option value="1">First Semester</option>
+                <option value="2">Second Semester</option>
+            </select>
+            <select id="subjectYearLevel">
+                <option value="1">First Year</option>
+                <option value="2">Second Year</option>
+                <option value="3">Third Year</option>
+                <option value="4">Fourth Year</option>
+            </select>
+            <button type="submit">Add Subject</button>
+        </form>
+        <h2>Existing Subjects</h2>
+        <table id="subjectsTable">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Description</th>
+                    <th>Lec</th>
+                    <th>Lab</th>
+                    <th>Units</th>
+                    <th>Pre-Reqs</th>
+                    <th>Semester</th>
+                    <th>Year</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    `;
+    mainContent.innerHTML = subjectsHtml;
+
+    document.getElementById('addSubjectForm').addEventListener('submit', addSubject);
+    loadSubjects();
+}
+
+function addSubject(e) {
+    e.preventDefault();
+    const code = document.getElementById('subjectCode').value;
+    const description = document.getElementById('subjectDescription').value;
+    const lecHours = parseInt(document.getElementById('subjectLecHours').value);
+    const labHours = parseInt(document.getElementById('subjectLabHours').value);
+    const units = parseInt(document.getElementById('subjectUnits').value);
+    const preReqs = document.getElementById('subjectPreReqs').value.split(',').map(item => item.trim());
+    const semester = parseInt(document.getElementById('subjectSemester').value);
+    const yearLevel = parseInt(document.getElementById('subjectYearLevel').value);
+
+    db.collection('subjects').add({
+        code: code,
+        description: description,
+        lecHours: lecHours,
+        labHours: labHours,
+        units: units,
+        preReqs: preReqs,
+        semester: semester,
+        yearLevel: yearLevel
+    })
+    .then(() => {
+        alert('Subject added successfully');
+        document.getElementById('addSubjectForm').reset();
+        loadSubjects();
+    })
+    .catch((error) => {
+        alert('Error adding subject: ' + error.message);
+    });
+}
+
+function loadSubjects() {
+    const tbody = document.querySelector('#subjectsTable tbody');
+    tbody.innerHTML = '';
+
+    db.collection('subjects').get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const subject = doc.data();
+                const row = `
+                    <tr>
+                        <td>${subject.code}</td>
+                        <td>${subject.description}</td>
+                        <td>${subject.lecHours}</td>
+                        <td>${subject.labHours}</td>
+                        <td>${subject.units}</td>
+                        <td>${subject.preReqs.join(', ')}</td>
+                        <td>${subject.semester}</td>
+                        <td>${subject.yearLevel}</td>
+                        <td>
+                            <button onclick="editSubject('${doc.id}')">Edit</button>
+                            <button onclick="deleteSubject('${doc.id}')">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                tbody.insertAdjacentHTML('beforeend', row);
+            });
+        })
+        .catch((error) => {
+            console.error("Error loading subjects:", error);
+        });
 }
 
 function signOut() {
