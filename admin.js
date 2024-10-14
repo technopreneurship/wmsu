@@ -166,12 +166,15 @@ function loadManageSubjects() {
             <select id="subjectSemester">
                 <option value="1">First Semester</option>
                 <option value="2">Second Semester</option>
+                <option value="3">Summer</option>
             </select>
             <select id="subjectYearLevel">
                 <option value="1">First Year</option>
                 <option value="2">Second Year</option>
                 <option value="3">Third Year</option>
                 <option value="4">Fourth Year</option>
+                <option value="5">Fifth Year</option>
+                <option value="6">Sixth Year</option>
             </select>
             <button type="submit">Add Subject</button>
         </form>
@@ -260,6 +263,81 @@ function loadSubjects() {
         .catch((error) => {
             console.error("Error loading subjects:", error);
         });
+}
+
+function editSubject(subjectId) {
+    db.collection('subjects').doc(subjectId).get()
+        .then((doc) => {
+            if (doc.exists) {
+                const subject = doc.data();
+                const editForm = `
+                    <h2>Edit Subject</h2>
+                    <form id="editSubjectForm">
+                        <input type="text" id="editSubjectCode" value="${subject.code}" required>
+                        <input type="text" id="editSubjectDescription" value="${subject.description}" required>
+                        <input type="number" id="editSubjectLecHours" value="${subject.lecHours}" required>
+                        <input type="number" id="editSubjectLabHours" value="${subject.labHours}" required>
+                        <input type="number" id="editSubjectUnits" value="${subject.units}" required>
+                        <input type="text" id="editSubjectPreReqs" value="${subject.preReqs.join(', ')}">
+                        <select id="editSubjectSemester">
+                            <option value="1" ${subject.semester === 1 ? 'selected' : ''}>First Semester</option>
+                            <option value="2" ${subject.semester === 2 ? 'selected' : ''}>Second Semester</option>
+                            <option value="3" ${subject.semester === 3 ? 'selected' : ''}>Summer</option>
+                        </select>
+                        <select id="editSubjectYearLevel">
+                            <option value="1" ${subject.yearLevel === 1 ? 'selected' : ''}>First Year</option>
+                            <option value="2" ${subject.yearLevel === 2 ? 'selected' : ''}>Second Year</option>
+                            <option value="3" ${subject.yearLevel === 3 ? 'selected' : ''}>Third Year</option>
+                            <option value="4" ${subject.yearLevel === 4 ? 'selected' : ''}>Fourth Year</option>
+                            <option value="5" ${subject.yearLevel === 5 ? 'selected' : ''}>Fifth Year</option>
+                            <option value="6" ${subject.yearLevel === 6 ? 'selected' : ''}>Sixth Year</option>
+                        </select>
+                        <button type="submit">Update Subject</button>
+                    </form>
+                `;
+                mainContent.innerHTML = editForm;
+
+                document.getElementById('editSubjectForm').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const updatedSubject = {
+                        code: document.getElementById('editSubjectCode').value,
+                        description: document.getElementById('editSubjectDescription').value,
+                        lecHours: parseInt(document.getElementById('editSubjectLecHours').value),
+                        labHours: parseInt(document.getElementById('editSubjectLabHours').value),
+                        units: parseInt(document.getElementById('editSubjectUnits').value),
+                        preReqs: document.getElementById('editSubjectPreReqs').value.split(',').map(item => item.trim()),
+                        semester: parseInt(document.getElementById('editSubjectSemester').value),
+                        yearLevel: parseInt(document.getElementById('editSubjectYearLevel').value)
+                    };
+
+                    db.collection('subjects').doc(subjectId).update(updatedSubject)
+                        .then(() => {
+                            alert('Subject updated successfully');
+                            loadManageSubjects();
+                        })
+                        .catch((error) => {
+                            alert('Error updating subject: ' + error.message);
+                        });
+                });
+            } else {
+                console.log("No such document!");
+            }
+        }).catch((error) => {
+            console.log("Error getting document:", error);
+        });
+}
+
+function deleteSubject(subjectId) {
+    if (confirm('Are you sure you want to delete this subject?')) {
+        db.collection('subjects').doc(subjectId).delete()
+            .then(() => {
+                alert('Subject deleted successfully');
+                loadSubjects();
+            })
+            .catch((error) => {
+                alert('Error deleting subject: ' + error.message);
+            });
+    }
 }
 
 function signOut() {

@@ -1,3 +1,44 @@
+.prospectus-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.prospectus-table th,
+.prospectus-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: top;
+}
+
+.semester-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.semester-table th,
+.semester-table td {
+    border: 1px solid #eee;
+    padding: 4px;
+    font-size: 0.9em;
+}
+
+
+.grade-select {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.grade-select:focus {
+    outline: none;
+    border-color: #B22222;
+    box-shadow: 0 0 0 2px rgba(178, 34, 34, 0.2);
+}
+
 .subject-selector {
     margin-bottom: 20px;
 }
