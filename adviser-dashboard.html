@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMSU CPE Advising - Adviser Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <div class="logo-container">
+                <img src="wmsu-logo.png" alt="WMSU Logo" class="logo">
+                <h2>Advising System</h2>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active" id="studentsLink">
+                    <i class="icon students-icon"></i>
+                    Students
+                </a>
+                <a href="#" class="nav-item" id="advisersLink">
+                    <i class="icon advisers-icon"></i>
+                    Advisers
+                </a>
+                <a href="#" class="nav-item" id="archivesLink">
+                    <i class="icon archives-icon"></i>
+                    Archives
+                </a>
+                <a href="#" class="nav-item" id="curriculumLink">
+                    <i class="icon curriculum-icon"></i>
+                    Curriculum
+                </a>
+                <a href="#" class="nav-item" id="creatorsLink">
+                    <i class="icon creators-icon"></i>
+                    Creators
+                </a>
+                <a href="#" class="nav-item" id="signOutLink">
+                    <i class="icon sign-out-icon"></i>
+                    Sign Out
+                </a>
+            </nav>
+        </div>
+        <div class="main-content">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search" class="search-input">
+            </div>
+            <div id="contentArea"></div>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="adviser.js"></script>
+</body>
+</html>

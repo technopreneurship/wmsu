@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMSU CPE Advising - Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar">
+            <h2>Admin Dashboard</h2>
+            <nav>
+                <a href="#" class="nav-item" id="manageAdvisersLink">Manage Advisers</a>
+                <a href="#" class="nav-item" id="manageSubjectsLink">Manage Subjects</a>
+                <a href="#" class="nav-item" id="signOutLink">Sign Out</a>
+            </nav>
+        </div>
+        <div class="main-content" id="mainContent">
+            <h1>Welcome, Admin</h1>
+            <p>Select an option from the sidebar to manage the system.</p>
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>
